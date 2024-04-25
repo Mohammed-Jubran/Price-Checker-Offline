@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:price_checker/src/screens/all_item/controller/all_item_controller.dart';
@@ -13,6 +14,18 @@ class AllItemScreen extends GetView<AllItemController> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('All Item'),
+        actions: [
+          if (kDebugMode) ...[
+            IconButton(
+              icon: const Icon(
+                Icons.delete,
+              ),
+              onPressed: () async {
+                await controller.dropHiveDb();
+              },
+            ),
+          ],
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8.0, right: 8.0, left: 8.0),
@@ -24,25 +37,6 @@ class AllItemScreen extends GetView<AllItemController> {
               },
             ),
             const SizedBox(height: 10),
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: boxItem.length,
-            //     itemBuilder: (context, index) {
-            //       Item item = boxItem.getAt(index)!;
-            //       return Card(
-            //         child: ListTile(
-            //           leading: Text(
-            //             '${index + 1}',
-            //             style: myStyle,
-            //           ),
-            //           title: Text(item.name,style: myStyle,),
-            //           subtitle: Text(item.barcode,style: myStyle,),
-            //           trailing: Text(item.price,style: myStyle,),
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // ),
             Expanded(
               child: GetBuilder<AllItemController>(
                 builder: (_) {
@@ -72,7 +66,7 @@ class AllItemScreen extends GetView<AllItemController> {
                       );
                     },
                   );
-                }
+                },
               ),
             ),
           ],

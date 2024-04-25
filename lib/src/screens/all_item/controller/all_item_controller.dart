@@ -13,7 +13,7 @@ class AllItemBinding extends Bindings {
 
 class AllItemController extends GetxController {
   List<ItemResult> itemList = [];
-  final List<ItemResult> _itemList = [];
+  List<ItemResult> _itemList = [];
 
   @override
   void onInit() {
@@ -21,7 +21,7 @@ class AllItemController extends GetxController {
     super.onInit();
   }
 
-  void convertHiveObjectToList() {
+  Future<void> convertHiveObjectToList() async {
     for (int i = 0; i < boxItem.length; i++) {
       _itemList.add(
         ItemResult(
@@ -47,6 +47,13 @@ class AllItemController extends GetxController {
     } else {
       itemList = _itemList;
     }
+    update();
+  }
+
+  Future<void> dropHiveDb() async {
+    await boxItem.clear();
+    _itemList=[];
+    itemList=[];
     update();
   }
 }
