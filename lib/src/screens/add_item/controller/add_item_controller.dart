@@ -21,6 +21,8 @@ class AddItemController extends GetxController {
     if (isValid(context: context)) {
       Item? item = boxItem.get(itemBarcode.text);
       if (item == null) {
+        double priceNumberFormat = double.tryParse(itemPrice.text) ?? 0.0;
+        itemPrice.text = priceNumberFormat.toStringAsFixed(2);
         boxItem.put(
           itemBarcode.text,
           Item(
