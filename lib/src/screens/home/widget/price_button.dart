@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PriceButton extends StatelessWidget {
   final String title;
-  final IconData  icon;
+  final IconData icon;
   final void Function()? onTap;
 
   const PriceButton({
@@ -15,7 +15,9 @@ class PriceButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap:onTap,
+      onTap: onTap,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
       child: Container(
         alignment: Alignment.center,
         height: 200,
