@@ -1,8 +1,6 @@
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 
 import '../../../common/box_storage/boxes.dart';
-import '../../../common/box_storage/item.dart';
 
 class AllItemBinding extends Bindings {
   @override
@@ -52,8 +50,8 @@ class AllItemController extends GetxController {
 
   Future<void> dropHiveDb() async {
     await boxItem.clear();
-    _itemList=[];
-    itemList=[];
+    _itemList = [];
+    itemList = [];
     update();
   }
 }
