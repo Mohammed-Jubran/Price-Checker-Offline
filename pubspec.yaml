@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.6
+  window_manager: ^0.3.8
   flutter_svg: ^2.0.10+1
   hive_flutter:
   hive: ^2.2.3

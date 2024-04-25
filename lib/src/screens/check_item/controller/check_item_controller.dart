@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:price_checker/src/common/box_storage/item.dart';
 
 import '../../../common/box_storage/boxes.dart';
+import '../../../common/set_full_screen.dart';
 import '../view/item_view.dart';
 
 class CheckItemBinding extends Bindings {
@@ -17,7 +18,18 @@ class CheckItemController extends GetxController {
   FocusNode focusNode = FocusNode();
   TextEditingController barcode = TextEditingController();
 
+  @override
+  void onInit() {
+    setFullScreen(fullScreen: true);
+    super.onInit();
+  }
+
   Future<void> checkItemBarcode() async {
+    if (barcode.text == r'962') {
+      await setFullScreen(fullScreen: false);
+      Get.back();
+      return;
+    }
     Item? item = boxItem.get(barcode.text);
     if (item != null) {
       myItem = item;

@@ -9,12 +9,6 @@ class CheckItemScreen extends GetView<CheckItemController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.home),
-        onPressed: () {
-          Get.back();
-        },
-      ),
       body: Stack(
         children: [
           GestureDetector(
