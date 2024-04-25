@@ -29,14 +29,25 @@ class AddItemController extends GetxController {
             price: itemPrice.text,
           ),
         );
-
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('product added successfully')),
+        );
         itemName.clear();
         itemBarcode.clear();
         itemPrice.clear();
       } else {
-        Get.defaultDialog(
-          title: 'Warning',
-          content: const Text('The product is exist'),
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            closeIconColor: Colors.black,
+            content: Text(
+              'The product is exist',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         );
       }
     }
@@ -44,9 +55,6 @@ class AddItemController extends GetxController {
 
   bool isValid({required BuildContext context}) {
     if (formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('product added successfully')),
-      );
       return true;
     }
     return false;

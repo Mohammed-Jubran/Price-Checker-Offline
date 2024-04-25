@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../common/decimal_text_input_formatter.dart';
 import '../controller/add_item_controller.dart';
 
 class AddItemScreen extends GetView<AddItemController> {
@@ -48,7 +47,9 @@ class AddItemScreen extends GetView<AddItemController> {
               ),
               TextFormField(
                 controller: controller.itemPrice,
-                inputFormatters: [DecimalTextInputFormatter(decimalRange: 2)],
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,2}')),
+                ],
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
